@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Отображение данных из базы данных MySQL</title>
+</head>
+<body>
+  <h1>Данные из базы данных:</h1>
+  <ul id="data-list"></ul>
+
+  <script>
+    fetch('http://206.81.25.11:3000/get-data')
+      .then(response => response.json())
+      .then(data => {
+        const dataList = document.getElementById('data-list');
+        data.forEach(item => {
+          const listItem = document.createElement('li');
+          listItem.textContent = JSON.stringify(item); // Здесь можно оформить данные по вашему усмотрению
+          dataList.appendChild(listItem);
+        });
+      })
+      .catch(error => console.error('Ошибка при получении данных:', error));
+  </script>
+</body>
+</html>
